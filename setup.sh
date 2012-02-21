@@ -27,17 +27,31 @@
 ################################################################################
 # ADD CLEANING LIST TO PEAR SECTION
 # RESTORE APACHE CONFIGURATIONS
-# RESTORE MYSQL CONFIGURATIONS
 # RESTORE GEDIT CONFIGURATIONS
-# RESTORE BASHRC CONFIGURATIONS
 # RESTORE SSH CONFIGURATIONS
 # RESTORE ...
+
+################################################################################
+# BASHRC
+################################################################################
+cp ./configurations/.bashrc ~/.bashrc
+. ~/.bashrc
+
+################################################################################
+# SOURCES.LIST
+################################################################################
+sudo cp ./configurations/sources.list /etc/apt/sources.list
+
+################################################################################
+# MYSQL CONFIGURATION
+################################################################################
+sudo cp ./configurations/my.cnf /etc/mysql/my.cnf
 
 ################################################################################
 # DPKG
 ################################################################################
 sudo dpkg --get-selections > /tmp/dpkg-package-selections.txt
-diff -w dpkg-package-selections.txt /tmp/dpkg-package-selections.txt | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> /tmp/dpkg-package-selections.txt
+diff -w ./configurations/dpkg-package-selections.txt /tmp/dpkg-package-selections.txt | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> /tmp/dpkg-package-selections.txt
 sudo dpkg --set-selections < /tmp/dpkg-package-selections.txt
 
 ################################################################################

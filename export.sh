@@ -25,10 +25,25 @@
 ################################################################################
 # DPKG
 ################################################################################
-sudo dpkg --get-selections > ./dpkg-package-selections.txt
+sudo dpkg --get-selections > ./configurations/dpkg-package-selections.txt
+
+################################################################################
+# SOURCES.LIST
+################################################################################
+cp /etc/apt/sources.list ./configurations/sources.list
+
+################################################################################
+# BASHRC
+################################################################################
+cp ~/.bashrc ./configurations/.bashrc
+
+################################################################################
+# MYSQL CONFIGURATION
+################################################################################
+cp /etc/mysql/my.cnf ./configurations/my.cnf
 
 ################################################################################
 # PEAR
 ################################################################################
-pear list-channels | grep "\." | sed -r "s/ .*//" > pear.channels.txt
-pear list | egrep "[0-9]\." | sed -r "s/ .*//" > pear.packages.txt
+pear list-channels | grep "\." | sed -r "s/ .*//" > ./configurations/pear.channels.txt
+pear list | egrep "[0-9]\." | sed -r "s/ .*//" > ./configurations/pear.packages.txt
