@@ -24,8 +24,9 @@ SOFTWARE.
 
 INSTALLATION
 --------------------------------------------------------------------------------
+    MAKE A FORK OF https://github.com/fabiocicerchia/Ubuntu-Setup-Environment
     sudo apt-get install git
-    git clone git://github.com/fabiocicerchia/Ubuntu-Setup-Environment.git
+    git clone git://github.com/<your-username>/Ubuntu-Setup-Environment.git
 
 BACKUP DATA
 --------------------------------------------------------------------------------
@@ -33,9 +34,19 @@ BACKUP DATA
     ./export.sh
     git add *
     git commit -m"changed selections"
-    git push
+    git push origin
 
 RESTORE DATA
 --------------------------------------------------------------------------------
     cd Ubuntu-Setup-Environment
     ./setup.sh
+
+TODO
+--------------------------------------------------------------------------------
+    - ADD CLEANING LIST TO PEAR SECTION
+    - RESTORE APACHE CONFIGURATIONS
+    - RESTORE GEDIT CONFIGURATIONS
+    - RESTORE SSH CONFIGURATIONS
+    - RESTORE GIT CONFIGURATIONS
+    - RESTORE HOSTS FILE
+    - RESTORE ...

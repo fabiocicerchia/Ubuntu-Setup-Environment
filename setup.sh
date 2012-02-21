@@ -23,15 +23,6 @@
 # SOFTWARE.
 
 ################################################################################
-# TODO
-################################################################################
-# ADD CLEANING LIST TO PEAR SECTION
-# RESTORE APACHE CONFIGURATIONS
-# RESTORE GEDIT CONFIGURATIONS
-# RESTORE SSH CONFIGURATIONS
-# RESTORE ...
-
-################################################################################
 # BASHRC
 ################################################################################
 cp ./configurations/.bashrc ~/.bashrc
