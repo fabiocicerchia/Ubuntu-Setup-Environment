@@ -25,6 +25,5 @@
 ################################################################################
 # DPKG
 ################################################################################
-sudo dpkg --get-selections > "/tmp/dpkg-package-selections.txt"
-diff -w "$BASEDIR/configurations/$ENVDIR/dpkg-package-selections.txt" "/tmp/dpkg-package-selections.txt" | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> "/tmp/dpkg-package-selections.txt"
-sudo dpkg --set-selections < "/tmp/dpkg-package-selections.txt"
+sudo dpkg --clear-selections
+sudo dpkg --set-selections < "$BASEDIR/configurations/$ENVDIR/dpkg-package-selections.txt"
