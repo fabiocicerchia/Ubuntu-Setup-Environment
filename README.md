@@ -13,7 +13,7 @@
  * `cd Ubuntu-Setup-Environment`
  * `./backup.sh <ENV>`
  * `git add configurations`
- * `git commit -m "changed configuration" configuration`
+ * `git commit -m "changed configuration" configurations`
  * `git push origin`
 
 **NOTE:** The `<ENV>` is a dedicated directory where save the configuration files.  
