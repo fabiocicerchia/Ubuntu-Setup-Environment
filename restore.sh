@@ -69,8 +69,8 @@ sudo dpkg --set-selections < "/tmp/dpkg-package-selections.txt"
 # UBUNTU TWEAK
 ################################################################################
 sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com FE85409EEAB40ECCB65740816AF0E1940624A220
-sudo sh -c 'echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"'
-sudo sh -c 'echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"'
+sudo sh -c 'CODENAME=`lsb_release -a 2>&1 | grep "Codename" | sed -r "s/.*\t//"`; echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu $CODENAME main" >> "/etc/apt/sources.list"'
+sudo sh -c 'CODENAME=`lsb_release -a 2>&1 | grep "Codename" | sed -r "s/.*\t//"`; echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu $CODENAME main" >> "/etc/apt/sources.list"'
 sudo apt-get update
 sudo apt-get install ubuntu-tweak
 
