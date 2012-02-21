@@ -23,31 +23,9 @@
 # SOFTWARE.
 
 ################################################################################
-# PRINT INFORMATIONS
+# APTITUDE
 ################################################################################
-echo "--------------------------------------------------------------------------------"
-echo "UBUNTU SETUP ENVIRONMENT - BACKUP"
-echo "Copyright (C) 2012 Fabio Cicerchia"
-echo "License: MIT"
-echo "--------------------------------------------------------------------------------"
-
-################################################################################
-# SETUP
-################################################################################
-export BASEDIR=$PWD
-export HOMEDIR=$HOME
-export ENVDIR=$1
-if [ "$ENVDIR" == "" ]; then
-    echo "ERROR: Invalid environment directory"
-    exit 1
-fi
-mkdir -p "$BASEDIR/configurations/$ENVDIR"
-
-################################################################################
-# RUN
-################################################################################
-"$BASEDIR/modules/dpkg/backup.sh"
-"$BASEDIR/modules/sources-list/backup.sh"
-"$BASEDIR/modules/bashrc/backup.sh"
-"$BASEDIR/modules/mysql/backup.sh"
-"$BASEDIR/modules/pear/backup.sh"
+sudo apt-get -u dselect-upgrade
+sudo apt-get autoremove
+sudo apt-get autoclean
+sudo apt-get clean

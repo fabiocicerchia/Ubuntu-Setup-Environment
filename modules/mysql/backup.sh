@@ -23,34 +23,6 @@
 # SOFTWARE.
 
 ################################################################################
-# PRINT INFORMATIONS
+# MYSQL
 ################################################################################
-echo "--------------------------------------------------------------------------------"
-echo "UBUNTU SETUP ENVIRONMENT - RESTORE"
-echo "Copyright (C) 2012 Fabio Cicerchia"
-echo "License: MIT"
-echo "--------------------------------------------------------------------------------"
-
-################################################################################
-# SETUP
-################################################################################
-export BASEDIR=$PWD
-export HOMEDIR=$HOME
-export ENVDIR=$1
-if [ ! -d "$BASEDIR/configurations/$ENVDIR" ]; then
-    echo "ERROR: Invalid environment directory"
-    exit 1
-fi
-
-################################################################################
-# RUN
-################################################################################
-"$BASEDIR/modules/bashrc/restore.sh"
-"$BASEDIR/modules/sources-list/restore.sh"
-"$BASEDIR/modules/mysql/restore.sh"
-"$BASEDIR/modules/dpkg/restore.sh"
-"$BASEDIR/modules/apt/restore.sh"
-"$BASEDIR/modules/ubuntu-tweak/restore.sh"
-"$BASEDIR/modules/pear/restore.sh"
-"$BASEDIR/modules/vim/restore.sh"
-"$BASEDIR/modules/firefox/restore.sh"
+cp "/etc/mysql/my.cnf" "$BASEDIR/configurations/$ENVDIR/my.cnf"

@@ -23,34 +23,7 @@
 # SOFTWARE.
 
 ################################################################################
-# PRINT INFORMATIONS
+# PEAR
 ################################################################################
-echo "--------------------------------------------------------------------------------"
-echo "UBUNTU SETUP ENVIRONMENT - RESTORE"
-echo "Copyright (C) 2012 Fabio Cicerchia"
-echo "License: MIT"
-echo "--------------------------------------------------------------------------------"
-
-################################################################################
-# SETUP
-################################################################################
-export BASEDIR=$PWD
-export HOMEDIR=$HOME
-export ENVDIR=$1
-if [ ! -d "$BASEDIR/configurations/$ENVDIR" ]; then
-    echo "ERROR: Invalid environment directory"
-    exit 1
-fi
-
-################################################################################
-# RUN
-################################################################################
-"$BASEDIR/modules/bashrc/restore.sh"
-"$BASEDIR/modules/sources-list/restore.sh"
-"$BASEDIR/modules/mysql/restore.sh"
-"$BASEDIR/modules/dpkg/restore.sh"
-"$BASEDIR/modules/apt/restore.sh"
-"$BASEDIR/modules/ubuntu-tweak/restore.sh"
-"$BASEDIR/modules/pear/restore.sh"
-"$BASEDIR/modules/vim/restore.sh"
-"$BASEDIR/modules/firefox/restore.sh"
+pear list-channels | grep "\." | sed -r "s/ .*//" > "$BASEDIR/configurations/$ENVDIR/pear.channels.txt"
+pear list | egrep "[0-9]\." | sed -r "s/ .*//" > "$BASEDIR/configurations/$ENVDIR/pear.packages.txt"

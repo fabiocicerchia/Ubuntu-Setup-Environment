@@ -23,31 +23,10 @@
 # SOFTWARE.
 
 ################################################################################
-# PRINT INFORMATIONS
+# UBUNTU TWEAK
 ################################################################################
-echo "--------------------------------------------------------------------------------"
-echo "UBUNTU SETUP ENVIRONMENT - BACKUP"
-echo "Copyright (C) 2012 Fabio Cicerchia"
-echo "License: MIT"
-echo "--------------------------------------------------------------------------------"
-
-################################################################################
-# SETUP
-################################################################################
-export BASEDIR=$PWD
-export HOMEDIR=$HOME
-export ENVDIR=$1
-if [ "$ENVDIR" == "" ]; then
-    echo "ERROR: Invalid environment directory"
-    exit 1
-fi
-mkdir -p "$BASEDIR/configurations/$ENVDIR"
-
-################################################################################
-# RUN
-################################################################################
-"$BASEDIR/modules/dpkg/backup.sh"
-"$BASEDIR/modules/sources-list/backup.sh"
-"$BASEDIR/modules/bashrc/backup.sh"
-"$BASEDIR/modules/mysql/backup.sh"
-"$BASEDIR/modules/pear/backup.sh"
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com FE85409EEAB40ECCB65740816AF0E1940624A220
+sudo sh -c 'CODENAME=`lsb_release -a 2>&1 | grep "Codename" | sed -r "s/.*\t//"`; echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu $CODENAME main" >> "/etc/apt/sources.list"'
+sudo sh -c 'CODENAME=`lsb_release -a 2>&1 | grep "Codename" | sed -r "s/.*\t//"`; echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu $CODENAME main" >> "/etc/apt/sources.list"'
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
