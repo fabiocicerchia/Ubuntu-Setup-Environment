@@ -1992,7 +1992,8 @@ telepathy-mission-control-5			install
 telepathy-salut					install
 telnet						install
 testdisk					install
-thunderbird					deinstall
+thunderbird					install
+thunderbird-globalmenu				install
 time						install
 tk						install
 tk8.5						install
