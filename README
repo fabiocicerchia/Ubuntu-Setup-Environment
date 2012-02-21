@@ -31,15 +31,21 @@ INSTALLATION
 BACKUP DATA
 --------------------------------------------------------------------------------
     cd Ubuntu-Setup-Environment
-    ./export.sh
-    git add *
-    git commit -m"changed selections"
+    ./backup.sh <ENV>
+    git add configurations
+    git commit -m "changed configuration" configuration
     git push origin
+
+    NOTE: The <ENV> is a dedicated directory where save the configuration files.
+          You can create multiple configuration (eg: home, work, etc).
 
 RESTORE DATA
 --------------------------------------------------------------------------------
     cd Ubuntu-Setup-Environment
-    ./setup.sh
+    ./restore.sh <ENV>
+
+    NOTE: The <ENV> is a dedicated directory where load the configuration files.
+          You can use multiple configuration (eg: home, work, etc).
 
 TODO
 --------------------------------------------------------------------------------
@@ -50,3 +56,4 @@ TODO
     - RESTORE GIT CONFIGURATIONS
     - RESTORE HOSTS FILE
     - RESTORE ...
+    - ERROR HANDLING WHEN SOME FILE IS MISSING

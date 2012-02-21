@@ -23,34 +23,55 @@
 # SOFTWARE.
 
 ################################################################################
+# PRINT INFORMATIONS
+################################################################################
+echo "--------------------------------------------------------------------------------"
+echo "UBUNTU SETUP ENVIRONMENT - RESTORE"
+echo "Copyright (C) 2012 Fabio Cicerchia"
+echo "License: MIT"
+echo "--------------------------------------------------------------------------------"
+
+################################################################################
+# SETUP
+################################################################################
+BASEDIR=$PWD
+HOMEDIR=$HOME
+ENVDIR=$1
+if [ ! -d "$BASEDIR/$ENVDIR" ]; then
+    echo "ERROR: Invalid environment directory"
+    exit 1
+fi
+
+################################################################################
 # BASHRC
 ################################################################################
-cp ./configurations/.bashrc ~/.bashrc
-. ~/.bashrc
+cp "$BASEDIR/configurations/.bashrc" "$HOMEDIR/.bashrc"
+. "$HOMEDIR/.bashrc"
 
 ################################################################################
 # SOURCES.LIST
 ################################################################################
-sudo cp ./configurations/sources.list /etc/apt/sources.list
+sudo cp "$BASEDIR/configurations/sources.list" "/etc/apt/sources.list"
 
 ################################################################################
 # MYSQL CONFIGURATION
 ################################################################################
-sudo cp ./configurations/my.cnf /etc/mysql/my.cnf
+sudo cp "$BASEDIR/configurations/my.cnf" "/etc/mysql/my.cnf"
 
 ################################################################################
 # DPKG
 ################################################################################
-sudo dpkg --get-selections > /tmp/dpkg-package-selections.txt
-diff -w ./configurations/dpkg-package-selections.txt /tmp/dpkg-package-selections.txt | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> /tmp/dpkg-package-selections.txt
-sudo dpkg --set-selections < /tmp/dpkg-package-selections.txt
+sudo dpkg --get-selections > "/tmp/dpkg-package-selections.txt"
+diff -w "$BASEDIR/configurations/dpkg-package-selections.txt" "/tmp/dpkg-package-selections.txt" | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> "/tmp/dpkg-package-selections.txt"
+sudo dpkg --set-selections < "/tmp/dpkg-package-selections.txt"
 
 ################################################################################
 # UBUNTU TWEAK
 ################################################################################
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com FE85409EEAB40ECCB65740816AF0E1940624A220
-sudo echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> /etc/apt/sources.list
-sudo echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> /etc/apt/sources.list
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com "FE85409EEAB40ECCB65740816AF0E1940624A220"
+sudo echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"
+sudo echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"
+sudo apt-get update
 sudo apt-get install ubuntu-tweak
 
 ################################################################################
@@ -79,9 +100,9 @@ done
 ################################################################################
 # VIM
 ################################################################################
-git clone git://github.com/fabiocicerchia/VIM-Configs.git ~/VIM-Configs
-ln -s ~/VIM-Configs/.vim ~/.vim
-ln -s ~/VIM-Configs/.vimrc ~/.vimrc
+git clone git://github.com/fabiocicerchia/VIM-Configs.git "$HOMEDIR/"
+ln -s "$HOMEDIR/VIM-Configs/.vim" "$HOMEDIR/.vim"
+ln -s "$HOMEDIR/VIM-Configs/.vimrc" "$HOMEDIR/.vimrc"
 
 ################################################################################
 # FIREFOX

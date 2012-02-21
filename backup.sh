@@ -23,27 +23,48 @@
 # SOFTWARE.
 
 ################################################################################
+# PRINT INFORMATIONS
+################################################################################
+echo "--------------------------------------------------------------------------------"
+echo "UBUNTU SETUP ENVIRONMENT - BACKUP"
+echo "Copyright (C) 2012 Fabio Cicerchia"
+echo "License: MIT"
+echo "--------------------------------------------------------------------------------"
+
+################################################################################
+# SETUP
+################################################################################
+BASEDIR=$PWD
+HOMEDIR=$HOME
+ENVDIR=$1
+if [ "$ENVDIR" == "" ]; then
+    echo "ERROR: Invalid environment directory"
+    exit 1
+fi
+mkdir -p "$BASEDIR/$ENVDIR"
+
+################################################################################
 # DPKG
 ################################################################################
-sudo dpkg --get-selections > ./configurations/dpkg-package-selections.txt
+sudo dpkg --get-selections > "$BASEDIR/configurations/$ENVDIR/dpkg-package-selections.txt"
 
 ################################################################################
 # SOURCES.LIST
 ################################################################################
-cp /etc/apt/sources.list ./configurations/sources.list
+cp "/etc/apt/sources.list" "$BASEDIR/configurations/$ENVDIR/sources.list"
 
 ################################################################################
 # BASHRC
 ################################################################################
-cp ~/.bashrc ./configurations/.bashrc
+cp $HOMEDIR/.bashrc "$BASEDIR/configurations/$ENVDIR/.bashrc"
 
 ################################################################################
 # MYSQL CONFIGURATION
 ################################################################################
-cp /etc/mysql/my.cnf ./configurations/my.cnf
+cp "/etc/mysql/my.cnf" "$BASEDIR/configurations/$ENVDIR/my.cnf"
 
 ################################################################################
 # PEAR
 ################################################################################
-pear list-channels | grep "\." | sed -r "s/ .*//" > ./configurations/pear.channels.txt
-pear list | egrep "[0-9]\." | sed -r "s/ .*//" > ./configurations/pear.packages.txt
+pear list-channels | grep "\." | sed -r "s/ .*//" > "$BASEDIR/configurations/$ENVDIR/pear.channels.txt"
+pear list | egrep "[0-9]\." | sed -r "s/ .*//" > "$BASEDIR/configurations/$ENVDIR/pear.packages.txt"
