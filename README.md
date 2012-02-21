@@ -30,17 +30,6 @@ You can use multiple configuration (eg: home, work, etc).
 
 ---
 
-## TODO
- * Add cleaning list to pear section
- * Restore apache configurations
- * Restore gedit configurations
- * Restore ssh configurations
- * Restore git configurations
- * Restore hosts file
- * Error handling when some file is missing
-
----
-
 ## LICENSE
 Copyright (C) 2012 Fabio Cicerchia
 
