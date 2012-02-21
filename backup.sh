@@ -37,7 +37,7 @@ echo "--------------------------------------------------------------------------
 export BASEDIR=$PWD
 export HOMEDIR=$HOME
 export ENVDIR=$1
-if [ "$ENVDIR" == "" ]; then
+if [ "$ENVDIR" = "" ]; then
     echo "ERROR: Invalid environment directory"
     exit 1
 fi
@@ -46,8 +46,13 @@ mkdir -p "$BASEDIR/configurations/$ENVDIR"
 ################################################################################
 # RUN
 ################################################################################
-"$BASEDIR/modules/dpkg/backup.sh"
-"$BASEDIR/modules/sources-list/backup.sh"
-"$BASEDIR/modules/bashrc/backup.sh"
-"$BASEDIR/modules/mysql/backup.sh"
-"$BASEDIR/modules/pear/backup.sh"
+sh "$BASEDIR/modules/dpkg/backup.sh"
+sh "$BASEDIR/modules/sources-list/backup.sh"
+sh "$BASEDIR/modules/bashrc/backup.sh"
+sh "$BASEDIR/modules/mysql/backup.sh"
+sh "$BASEDIR/modules/pear/backup.sh"
+
+################################################################################
+# DONE
+################################################################################
+echo "DONE"

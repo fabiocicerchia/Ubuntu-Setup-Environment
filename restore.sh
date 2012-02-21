@@ -45,12 +45,17 @@ fi
 ################################################################################
 # RUN
 ################################################################################
-"$BASEDIR/modules/bashrc/restore.sh"
-"$BASEDIR/modules/sources-list/restore.sh"
-"$BASEDIR/modules/mysql/restore.sh"
-"$BASEDIR/modules/dpkg/restore.sh"
-"$BASEDIR/modules/apt/restore.sh"
-"$BASEDIR/modules/ubuntu-tweak/restore.sh"
-"$BASEDIR/modules/pear/restore.sh"
-"$BASEDIR/modules/vim/restore.sh"
-"$BASEDIR/modules/firefox/restore.sh"
+sh "$BASEDIR/modules/bashrc/restore.sh"
+sh "$BASEDIR/modules/sources-list/restore.sh"
+sh "$BASEDIR/modules/mysql/restore.sh"
+sh "$BASEDIR/modules/dpkg/restore.sh"
+sh "$BASEDIR/modules/apt/restore.sh"
+sh "$BASEDIR/modules/ubuntu-tweak/restore.sh"
+sh "$BASEDIR/modules/pear/restore.sh"
+sh "$BASEDIR/modules/vim/restore.sh"
+sh "$BASEDIR/modules/firefox/restore.sh"
+
+################################################################################
+# DONE
+################################################################################
+echo "DONE"
