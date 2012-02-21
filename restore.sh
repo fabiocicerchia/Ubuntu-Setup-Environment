@@ -37,7 +37,7 @@ echo "--------------------------------------------------------------------------
 BASEDIR=$PWD
 HOMEDIR=$HOME
 ENVDIR=$1
-if [ ! -d "$BASEDIR/$ENVDIR" ]; then
+if [ ! -d "$BASEDIR/configurations/$ENVDIR" ]; then
     echo "ERROR: Invalid environment directory"
     exit 1
 fi
@@ -45,39 +45,39 @@ fi
 ################################################################################
 # BASHRC
 ################################################################################
-cp "$BASEDIR/configurations/.bashrc" "$HOMEDIR/.bashrc"
+cp "$BASEDIR/configurations/$ENVDIR/.bashrc" "$HOMEDIR/.bashrc"
 . "$HOMEDIR/.bashrc"
 
 ################################################################################
 # SOURCES.LIST
 ################################################################################
-sudo cp "$BASEDIR/configurations/sources.list" "/etc/apt/sources.list"
+sudo cp "$BASEDIR/configurations/$ENVDIR/sources.list" "/etc/apt/sources.list"
 
 ################################################################################
 # MYSQL CONFIGURATION
 ################################################################################
-sudo cp "$BASEDIR/configurations/my.cnf" "/etc/mysql/my.cnf"
+sudo cp "$BASEDIR/configurations/$ENVDIR/my.cnf" "/etc/mysql/my.cnf"
 
 ################################################################################
 # DPKG
 ################################################################################
 sudo dpkg --get-selections > "/tmp/dpkg-package-selections.txt"
-diff -w "$BASEDIR/configurations/dpkg-package-selections.txt" "/tmp/dpkg-package-selections.txt" | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> "/tmp/dpkg-package-selections.txt"
+diff -w "$BASEDIR/configurations/$ENVDIR/dpkg-package-selections.txt" "/tmp/dpkg-package-selections.txt" | grep "^<" | sed -r "s/^< //" | sed -r "s/install/deinstall/" >> "/tmp/dpkg-package-selections.txt"
 sudo dpkg --set-selections < "/tmp/dpkg-package-selections.txt"
 
 ################################################################################
 # UBUNTU TWEAK
 ################################################################################
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com "FE85409EEAB40ECCB65740816AF0E1940624A220"
-sudo echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"
-sudo echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com FE85409EEAB40ECCB65740816AF0E1940624A220
+sudo sh -c 'echo "deb http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"'
+sudo sh -c 'echo "deb-src http://ppa.launchpad.net/tualatrix/ppa/ubuntu karmic main" >> "/etc/apt/sources.list"'
 sudo apt-get update
 sudo apt-get install ubuntu-tweak
 
 ################################################################################
 # APTITUDE
 ################################################################################
-sudo apt-get -u dselect-upgrade
+#sudo apt-get -u dselect-upgrade
 sudo apt-get autoremove
 sudo apt-get autoclean
 sudo apt-get clean
@@ -85,22 +85,22 @@ sudo apt-get clean
 ################################################################################
 # PEAR
 ################################################################################
-for CHANNEL in `cat pear.channels.txt`;
+for CHANNEL in `cat "$BASEDIR/configurations/$ENVDIR/pear.channels.txt"`;
 do
     sudo pear channel-discover $CHANNEL;
 done
 
 sudo pear channel-update
 
-for PACKAGE in `cat pear.packages.txt`;
+for PACKAGE in `cat "$BASEDIR/configurations/$ENVDIR/pear.packages.txt"`;
 do
-    sudo pear install --alldeps $CHANNEL;
+    sudo pear install --alldeps $PACKAGE;
 done
 
 ################################################################################
 # VIM
 ################################################################################
-git clone git://github.com/fabiocicerchia/VIM-Configs.git "$HOMEDIR/"
+git clone git://github.com/fabiocicerchia/VIM-Configs.git "$HOMEDIR/VIM-Configs"
 ln -s "$HOMEDIR/VIM-Configs/.vim" "$HOMEDIR/.vim"
 ln -s "$HOMEDIR/VIM-Configs/.vimrc" "$HOMEDIR/.vimrc"
 

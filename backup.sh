@@ -41,7 +41,7 @@ if [ "$ENVDIR" == "" ]; then
     echo "ERROR: Invalid environment directory"
     exit 1
 fi
-mkdir -p "$BASEDIR/$ENVDIR"
+mkdir -p "$BASEDIR/configurations/$ENVDIR"
 
 ################################################################################
 # DPKG
@@ -56,7 +56,7 @@ cp "/etc/apt/sources.list" "$BASEDIR/configurations/$ENVDIR/sources.list"
 ################################################################################
 # BASHRC
 ################################################################################
-cp $HOMEDIR/.bashrc "$BASEDIR/configurations/$ENVDIR/.bashrc"
+cp "$HOMEDIR/.bashrc" "$BASEDIR/configurations/$ENVDIR/.bashrc"
 
 ################################################################################
 # MYSQL CONFIGURATION
