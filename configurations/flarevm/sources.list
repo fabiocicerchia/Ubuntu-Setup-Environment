@@ -1,0 +1,25 @@
+#
+#  /etc/apt/sources.list
+#
+
+
+#
+# squeeze
+#
+deb     http://ftp.it.debian.org/debian/     squeeze main contrib non-free
+deb-src http://ftp.it.debian.org/debian/     squeeze main contrib non-free
+
+# 
+#  Security updates - Uncomment to enable.
+# 
+# deb     http://security.debian.org/ squeeze/updates  main contrib non-free
+# deb-src http://security.debian.org/ squeeze/updates  main contrib non-free
+
+#
+# dot-deb
+#
+deb http://packages.dotdeb.org squeeze all
+deb-src http://packages.dotdeb.org squeeze all
+
+deb http://php53.dotdeb.org squeeze all
+deb-src http://php53.dotdeb.org squeeze all
