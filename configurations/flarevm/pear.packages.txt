@@ -1,0 +1,14 @@
+Archive_Tar
+Benchmark
+Cache_Lite
+Console_CommandLine
+Console_Getopt
+HTTP_Request2
+Log
+Net_URL2
+PEAR
+PHP_CodeSniffer
+PhpDocumentor
+Structures_Graph
+XML_RPC2
+XML_Util
