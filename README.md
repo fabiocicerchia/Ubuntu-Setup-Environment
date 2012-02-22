@@ -32,12 +32,6 @@ You can use multiple configuration (eg: home, work, etc).
 
 ---
 
-## PULL NEWER REVISIONS
- * `git remote add upstream git://github.com/fabiocicerchia/Ubuntu-Setup-Environment.git`
- * `git pull upstream`
-
----
-
 ## LICENSE
 Copyright (C) 2012 Fabio Cicerchia
 
