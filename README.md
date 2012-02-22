@@ -6,6 +6,8 @@
  * Make a fork of `https://github.com/fabiocicerchia/Ubuntu-Setup-Environment`
  * `sudo apt-get install git`
  * `git clone git://github.com/<your-username>/Ubuntu-Setup-Environment.git`
+ * `cd Ubuntu-Setup-Environment`
+ * `./init.sh`
 
 ---
 
