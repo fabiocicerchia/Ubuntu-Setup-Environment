@@ -37,7 +37,7 @@ echo "--------------------------------------------------------------------------
 export BASEDIR=$PWD
 export HOMEDIR=$HOME
 export ENVDIR=$1
-if [ "$ENVDIR" = "" ]; then
+if [ "$ENVDIR" == "" -o ! -d "$BASEDIR/configurations/$ENVDIR" ]; then
     echo "ERROR: Invalid environment directory"
     exit 1
 fi
