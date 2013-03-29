@@ -1,11 +1,9 @@
-components.ez.no
 doc.php.net
-pear.bonzai-project.org
-pear.docblox-project.org
+pear.bovigo.org
 pear.pdepend.org
 pear.php.net
+pear.phpdoc.org
 pear.phpmd.org
 pear.phpunit.de
-pear.pirum-project.org
-pear.symfony-project.com
+pear.symfony.com
 pecl.php.net
