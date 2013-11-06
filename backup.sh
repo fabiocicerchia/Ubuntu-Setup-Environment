@@ -2,7 +2,7 @@
 #
 # UBUNTU SETUP ENVIRONMENT
 #
-# Copyright (C) 2012 Fabio Cicerchia
+# Copyright (C) 2012-2013 Fabio Cicerchia
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 ################################################################################
 echo "--------------------------------------------------------------------------------"
 echo "UBUNTU SETUP ENVIRONMENT - BACKUP"
-echo "Copyright (C) 2012 Fabio Cicerchia"
+echo "Copyright (C) 2012-2013 Fabio Cicerchia"
 echo "License: MIT"
 echo "--------------------------------------------------------------------------------"
 
@@ -37,7 +37,7 @@ echo "--------------------------------------------------------------------------
 export BASEDIR=$PWD
 export HOMEDIR=$HOME
 export ENVDIR=$1
-if [ "$ENVDIR" == "" -o ! -d "$BASEDIR/configurations/$ENVDIR" ]; then
+if [ "$ENVDIR" == "" ]; then
     echo "ERROR: Invalid environment directory"
     exit 1
 fi
@@ -47,10 +47,11 @@ mkdir -p "$BASEDIR/configurations/$ENVDIR"
 # RUN
 ################################################################################
 sh "$BASEDIR/modules/dpkg/backup.sh"
-sh "$BASEDIR/modules/sources-list/backup.sh"
 sh "$BASEDIR/modules/bashrc/backup.sh"
-sh "$BASEDIR/modules/mysql/backup.sh"
 sh "$BASEDIR/modules/pear/backup.sh"
+sh "$BASEDIR/modules/gedit/backup.sh"
+sh "$BASEDIR/modules/mysql/backup.sh"
+sh "$BASEDIR/modules/sources-list/backup.sh"
 
 ################################################################################
 # DONE

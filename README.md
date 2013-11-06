@@ -6,8 +6,6 @@
  * Make a fork of `https://github.com/fabiocicerchia/Ubuntu-Setup-Environment`
  * `sudo apt-get install git`
  * `git clone git://github.com/<your-username>/Ubuntu-Setup-Environment.git`
- * `cd Ubuntu-Setup-Environment`
- * `./init.sh`
 
 ---
 
@@ -33,7 +31,7 @@ You can use multiple configuration (eg: home, work, etc).
 ---
 
 ## LICENSE
-Copyright (C) 2012 Fabio Cicerchia
+Copyright (C) 2012-2013 Fabio Cicerchia
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

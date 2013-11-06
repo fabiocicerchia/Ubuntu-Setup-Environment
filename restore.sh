@@ -2,7 +2,7 @@
 #
 # UBUNTU SETUP ENVIRONMENT
 #
-# Copyright (C) 2012 Fabio Cicerchia
+# Copyright (C) 2012-2013 Fabio Cicerchia
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@
 ################################################################################
 echo "--------------------------------------------------------------------------------"
 echo "UBUNTU SETUP ENVIRONMENT - RESTORE"
-echo "Copyright (C) 2012 Fabio Cicerchia"
+echo "Copyright (C) 2012-2013 Fabio Cicerchia"
 echo "License: MIT"
 echo "--------------------------------------------------------------------------------"
 
@@ -45,15 +45,16 @@ fi
 ################################################################################
 # RUN
 ################################################################################
-sh "$BASEDIR/modules/bashrc/restore.sh"
-sh "$BASEDIR/modules/sources-list/restore.sh"
-sh "$BASEDIR/modules/mysql/restore.sh"
-sh "$BASEDIR/modules/dpkg/restore.sh"
-sh "$BASEDIR/modules/apt/restore.sh"
-sh "$BASEDIR/modules/ubuntu-tweak/restore.sh"
-sh "$BASEDIR/modules/pear/restore.sh"
-sh "$BASEDIR/modules/vim/restore.sh"
 sh "$BASEDIR/modules/firefox/restore.sh"
+sh "$BASEDIR/modules/dpkg/restore.sh"
+sh "$BASEDIR/modules/vim/restore.sh"
+sh "$BASEDIR/modules/bashrc/restore.sh"
+sh "$BASEDIR/modules/pear/restore.sh"
+sh "$BASEDIR/modules/apt/restore.sh"
+sh "$BASEDIR/modules/gedit/restore.sh"
+sh "$BASEDIR/modules/ubuntu-tweak/restore.sh"
+sh "$BASEDIR/modules/mysql/restore.sh"
+sh "$BASEDIR/modules/sources-list/restore.sh"
 
 ################################################################################
 # DONE
