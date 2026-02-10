@@ -1,0 +1,189 @@
+#cloud-config
+autoinstall:
+  version: 1
+  interactive-sections:
+    - network
+    - storage
+  locale: en_GB.UTF-8
+  # Refresh to the latest snap built from the "main" subiquity branch
+  refresh-installer:
+    update: true
+    channel: latest/edge
+  keyboard:
+    layout: gb
+    variant: ''
+    toggle: null
+  apt:
+    preserve_sources_list: false
+    disable_components: []
+    fallback: offline-install
+    geoip: true
+    mirror-selection:
+      primary:
+      - country-mirror
+      - arches: &id001 [i386, amd64]
+        uri: http://archive.ubuntu.com/ubuntu/
+      - arches: &id002 [s390x, arm64, armhf, powerpc, ppc64el, riscv64]
+        uri: http://ports.ubuntu.com/ubuntu-ports
+      - uri: https://download.docker.com/linux/ubuntu
+      - uri: https://apt.releases.hashicorp.com
+    security:
+    - arches: *id001
+      uri: http://security.ubuntu.com/ubuntu/
+    - arches: *id002
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  identity:
+    realname: 'Fabio'
+    username: fabio
+    password: '$y$j9T$jTC/kLxqMKqHisvQAra.H0$GENWy7xBhEFU/AUzE248ethQf2cFH8HPqF23LBJgswB' # password
+    hostname: ubuntu
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: false
+  codecs:
+    install: true
+  drivers:
+    install: true
+  # Install OEM meta-packages as suggested by ubuntu-drivers.
+  # On some hardware, this changes what kernel is installed.
+  oem:
+    install: true
+  snaps:
+    - name: code
+    - name: dyff
+    - name: firefox
+    - name: helm
+    - name: inkscape
+    - name: kubectl
+    - name: postman
+    - name: slack
+    - name: spotify
+    - name: thunderbird
+    - name: terraform
+  packages:
+    - curl
+    - vim
+    - zsh
+    - git
+    - aha
+    - byobu
+    - ca-certificates
+    - caffeine
+    - containerd.io
+    - curl
+    - docker-ce
+    - docker-ce-cli
+    - gimp
+    - git-secret
+    - gnupg
+    - htop
+    - imagemagick
+    - iotop
+    - ipcalc
+    - iperf
+    - jq
+    - meld
+    - nmon
+    - pdftk
+    - sysstat
+    - tcpdump
+    - terminator
+    - python3-venv
+    - traceroute
+    - vim
+  timezone: "Europe/Rome"
+  updates: all
+  late-commands:
+    # SHELL
+    ###########################################################################
+
+    # oh my zsh
+    - sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - git clone https://github.com/rtakasuke/zsh-duration.git ~/.oh-my-zsh/plugins/zsh-duration
+    - curl -L git.io/antigen > $HOME/antigen.zsh
+
+    # CODING
+    ###########################################################################
+
+    # git
+    - git config --global user.email fabio.cicerchia@treatwell.com
+    - git config --global user.name "Fabio Cicerchia"
+
+    # pyenv
+    - curl https://pyenv.run | bash
+
+    # nodejs
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/refs/heads/master/install.sh | bash
+    - nvm install 24
+    - npm install --global yarn
+    - npm install -g cdk8s-cli typescript aws-cdk
+
+    # gomplate
+    - sudo wget https://github.com/hairyhenderson/gomplate/releases/download/latest/gomplate_linux-amd64 -O /usr/local/bin/gomplate
+    - sudo chmod +x /usr/local/bin/gomplate
+
+    # yq
+    - sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
+    - sudo chmod +x /usr/bin/yq
+
+    # yj
+    - sudo wget https://github.com/sclevine/yj/releases/download/latest/yj-linux-amd64 -O /usr/local/bin/yj
+    - sudo chmod +x /usr/local/bin/yj
+
+    # SECURITY
+    ###########################################################################
+
+    # checkov
+    - pipx install checkov
+
+    # sops
+    - sudo wget https://github.com/getsops/sops/releases/download/v3.10.2/sops-v3.10.2.linux.amd64 -O /usr/local/bin/sops
+    - sudo chmod +x /usr/local/bin/sops
+
+    # INFRA
+    ###########################################################################
+
+    # ansible
+    - pipx install ansible
+
+    # AWS
+    ###########################################################################
+
+    # aws cli
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip && sudo ./aws/install
+    - aws configure set default.s3.max_concurrent_requests 20
+    - python3 -m pip install --user pipx --break-system-packages
+    - python3 -m pipx ensurepath
+    - pipx install aws-sso-util
+
+    # DOCKER
+    ###########################################################################
+
+    # docker compose
+    - sudo wget "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -O /usr/local/bin/docker-compose
+    - sudo chmod +x /usr/local/bin/docker-compose
+
+    # KUBERNETES
+    ###########################################################################
+
+    # minikube
+    - curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    - sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+    # k9s
+    - wget https://github.com/derailed/k9s/releases/download/latest/k9s_linux_amd64.deb
+    - sudo dpkg -i k9s_linux_amd64.deb
+
+    # eks
+    - curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+    - sudo mv /tmp/eksctl /usr/local/bin
+
+    # kustomize
+    - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+    - sudo mv kustomize /usr/local/bin
+
+    # kubent
+    - sh -c "$(curl -sSL https://git.io/install-kubent)"
+
